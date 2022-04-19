@@ -24,3 +24,8 @@ export const StyledForm = styled.form`
     width: 5rem;
   }
 `;
+
+export const ErrorMessage = styled.div`
+  color: red;
+  margin: -1rem;
+`;

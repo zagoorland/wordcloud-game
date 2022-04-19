@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import { UserContext } from '../../contexts/UserContext';
-import { Container, StyledForm } from './styles';
+import { Container, ErrorMessage, StyledForm } from './styles';
 
 const Login = () => {
   const [userInput, setUserInput] = useState('');
@@ -13,10 +13,7 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!userInput.length) {
-      return alert('Enter your username first!');
-    }
-
+    
     setUser({ name: userInput });
     navigate('/game');
   };
@@ -32,7 +29,8 @@ const Login = () => {
           onChange={(e) => setUserInput(e.target.value)}
           value={userInput}
         />
-        <Button>Play</Button>
+        {!userInput.length && <ErrorMessage>Nickname is required</ErrorMessage>}
+        <Button disabled={!userInput.length}>Play</Button>
       </StyledForm>
     </Container>
   );
